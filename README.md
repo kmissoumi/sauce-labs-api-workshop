@@ -41,7 +41,7 @@ _Is there a demo API I can use to build and test with?_
 >       - Add a key name _`key`_
 >       - Assign it the value _`ABC123`_  
 > - Select the blue _`SEND`_ button and examine the response body.
-> - Select the gree _`Generate Test`_ button.  
+> - Select the green _`Generate Test`_ button.  
 > 
 
 <br>
