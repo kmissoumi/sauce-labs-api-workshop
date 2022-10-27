@@ -46,7 +46,7 @@ _Is there a demo API I can use to build and test with?_
 
 <br>
 
-_Are there examples I could import?_
+_Do you know if there are any examples I could import?_
 > _Yes!_ 
 > - Open a project > Select _`Create Test`_ > Select _`APIF Test` (Import from an exported API Test)_  
 >   - Select the [workshop-examples.zip][api-example-01] file.
