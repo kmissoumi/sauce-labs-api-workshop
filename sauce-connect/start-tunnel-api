@@ -1,0 +1,19 @@
+#!/bin/bash -x
+#
+# 2022-10-25
+# kareem@missoumi.org
+#
+# Copyright (c) 2022, Kareem Missoumi
+# All rights reserved.
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+#
+
+timeStamp=$(date +"%Y-%m-%d_%H%M%S_%s")
+timeEpoch=$(date +%s)
+scriptPath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+quickSauceHome=$( echo "${scriptPath%/*}" )
+
+
+sc --config-file ${quickSauceHome}/config/tunnel-config-api.yaml
