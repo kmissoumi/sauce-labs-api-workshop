@@ -1,0 +1,12 @@
+{
+    "id": "3",
+    "name": "Bluetooth Headphones",
+    "price": 49.99,
+    "category": "1",
+    "quantity": 50,
+    "imageURL": "http://image.com",
+    "color": [
+        "green",
+        "yellow"
+    ]
+}

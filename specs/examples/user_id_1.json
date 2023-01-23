@@ -1,0 +1,8 @@
+{   
+    "id": 1,
+    "username": "hagrid",
+    "first_name": "Rubeus",
+    "last_name": "Hagrid",
+    "email": "hagrid@hogwarts.edu",
+    "is_admin": true
+}

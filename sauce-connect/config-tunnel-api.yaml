@@ -1,9 +1,0 @@
-vm-version: "v2alpha"
-user:
-api-key:
-tunnel-identifier: local-api
-verbose: 0
-region: eu-central
-logfile: "-"
-no-ssl-bump-domains: [ all ]
-shared-tunnel: false

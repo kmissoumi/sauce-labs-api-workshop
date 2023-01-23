@@ -1,0 +1,6 @@
+{
+    "url": "{{requestUrl}}",
+    "requestHeaders": {{json headers}},
+    "requestBody": {{json body}},
+    "ipAddress": "{{ipAddress}}"
+}

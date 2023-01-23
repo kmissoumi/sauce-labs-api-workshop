@@ -1,0 +1,298 @@
+openapi: "3.0.0"
+
+info:
+  version: 1.0.0
+  title: Demo API
+  description: An example spec file for Sauce Labs API testing
+
+servers:
+  - url: http://demoapi.apifortress.com/api
+  - url: http://localhost:6000/api
+
+paths:
+  /retail/product:
+    get:
+      operationId: getProductList
+      responses:
+        '200':
+          x-sauce-cond:
+            op: matches
+            collection: headers
+            key: authorization
+            value: Basic .*
+            priority: 10
+          description: returns list of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/product'
+        '401':
+          description: no authorization
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                {
+                    "message": "User not authorized",
+                    "code": 401
+                }
+  /retail/product/{id}:
+    get:
+      operationId: getProductById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          x-sauce-cond:
+            op: exists
+            collection: headers
+            key: authorization
+            priority: 10
+          description: returns details of a product
+          content:
+            application/json:
+              schema:
+                 $ref: '#/components/schemas/product'
+              
+
+        '401':
+          description: no authorization
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                {
+                    "message": "User not authorized",
+                    "code": 401
+                }
+  /user:
+    get:
+      operationId: getUserList
+      responses:
+        '200':
+          x-sauce-cond:
+            op: matches
+            collection: headers
+            key: authorization
+            value: Basic .*
+            priority: 10
+          description: returns user list
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/user'
+        '401':
+          description: no authorization
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                {
+                    "message": "User not authorized",
+                    "code": 401
+                }
+  /user/{id}:
+    get:
+      operationId: getUserById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          x-sauce-cond:
+            op: exists
+            collection: headers
+            key: authorization
+            priority: 10
+          description: returns a user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+              examples:
+                sample_user_1:
+                  x-sauce-cond:
+                    op: equals
+                    collection: uriParams
+                    key: id
+                    value: 1
+                    priority: 10
+                  externalValue: examples/user_id_1.json
+                sample_user_2:
+                  x-sauce-cond:
+                    op: equals
+                    collection: uriParams
+                    key: id
+                    value: 2
+                    priority: 10
+                  externalValue: examples/user_id_2.json
+                sample_user_3:
+                  x-sauce-cond:
+                    op: equals
+                    collection: uriParams
+                    key: id
+                    value: 3
+                    priority: 10
+                  externalValue: examples/user_id_3.json
+                invalid_example:
+                  x-sauce-cond:
+                    op: equals
+                    collection: uriParams
+                    key: id
+                    value: 4
+                    priority: 10
+                  externalValue: examples/user_id_4.json
+        '401':
+          description: no authorization
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                {
+                    "message": "User not authorized",
+                    "code": 401
+                }
+  /echo:
+    get:
+      operationId: echo
+      responses:
+        '200':
+          description: outputs the request body and headers 
+          content:
+            application/json:
+              examples:
+                echo:
+                  externalValue: examples/echo.json
+  /post-check:
+    post:
+      operationId: postCheck
+      requestBody:
+        content:
+          "application/json":
+            schema:
+              type: object
+              required:
+              - id
+              properties:
+                id:
+                  type: integer
+      responses:
+        '200':
+          description: foobar
+          content:
+            application/json:
+              example: |
+                {
+                  "status":"OK",
+                  "id": {{body.id}}
+                }
+
+components:
+  schemas:
+    releaseNotes:
+      type: object
+      required:
+      - text
+      - contact
+      properties:
+        text:
+          type: string
+        contact:
+          type: string
+          x-sauce-faker: internet.email
+    product:
+      type: object
+      required:
+        - id
+        - name
+        - price
+      additionalProperties: false
+      properties:
+        id:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 99
+        name:
+          type: string
+          x-sauce-faker: commerce.product
+        price:
+          type: string
+          pattern: '^(EUR|€)\s?(\d{1,3}(\.\d{3}))(\,\d{2})?$'
+        category:
+          type: string
+          x-sauce-faker: commerce.department
+        description:
+          type: string
+          x-sauce-faker: commerce.department
+        quantity:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 9999
+        status:
+          type: string
+          enum:
+          - available
+          - restocking
+          - sale
+        imageURL:
+          type: string
+          x-sauce-faker: internet.url
+        color:
+          type: array
+          items:
+            type: string
+            x-sauce-faker: commerce.color
+    user:
+      type: object
+      additionalProperties: false
+      required:
+      - id
+      - username
+      properties:
+        id:
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 99
+        username:
+          type: string
+        email:
+          type: string
+          x-sauce-faker: internet.email
+        first_name:
+          type: string
+        last_name:
+          type: string
+        is_admin:
+          type: boolean
+        role:
+          type: string
+          enum:
+          - staff
+          - admin
+          - teacher
+          - auror
+    error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: number

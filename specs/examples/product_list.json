@@ -1,0 +1,153 @@
+[
+    {
+        "id": 1,
+        "name": "Baseball Cap",
+        "price": 29.99,
+        "category": "1",
+        "description": "This is product 1!",
+        "quantity": 5,
+        "imageURL": "http://image.com",
+        "color": [
+            "blue",
+            "yellow"
+        ],
+        "createdAt": "2022-12-14T10:46:32.464Z",
+        "updatedAt": "2022-12-14T10:46:32.464Z"
+    },
+    {
+        "id": 2,
+        "name": "Long Sleeve Shirt",
+        "price": 39.99,
+        "category": "1",
+        "description": "This is product 2!",
+        "quantity": 7,
+        "imageURL": "http://image.com",
+        "color": [
+            "blue",
+            "yellow",
+            "red"
+        ],
+        "createdAt": "2022-12-14T10:46:32.465Z",
+        "updatedAt": "2022-12-14T10:46:32.465Z"
+    },
+    {
+        "id": 3,
+        "name": "Bluetooth Headphones",
+        "price": 49.99,
+        "category": "1",
+        "description": "This is product 3!",
+        "quantity": 50,
+        "imageURL": "http://image.com",
+        "color": [
+            "green",
+            "yellow"
+        ],
+        "createdAt": "2022-12-14T10:46:32.465Z",
+        "updatedAt": "2022-12-14T10:46:32.465Z"
+    },
+    {
+        "id": 4,
+        "name": "Computer Monitor",
+        "price": 19.99,
+        "category": "1",
+        "description": "This is product 4!",
+        "quantity": 25,
+        "imageURL": "http://image.com",
+        "color": [
+            "brown",
+            "blue"
+        ],
+        "createdAt": "2022-12-14T10:46:32.465Z",
+        "updatedAt": "2022-12-14T10:46:32.465Z"
+    },
+    {
+        "id": 5,
+        "name": "Beach Umbrella",
+        "price": 79.99,
+        "category": "1",
+        "description": "This is product 5!",
+        "quantity": 6,
+        "imageURL": "http://image.com",
+        "color": [
+            "red",
+            "yellow"
+        ],
+        "createdAt": "2022-12-14T10:46:32.467Z",
+        "updatedAt": "2022-12-14T10:46:32.467Z"
+    },
+    {
+        "id": 6,
+        "name": "Beekeepers Hood",
+        "price": 89.99,
+        "category": "2",
+        "description": "This is product 6!",
+        "quantity": 96,
+        "imageURL": "http://image.com",
+        "color": [
+            "orange",
+            "yellow"
+        ],
+        "createdAt": "2022-12-14T10:46:32.467Z",
+        "updatedAt": "2022-12-14T10:46:32.467Z"
+    },
+    {
+        "id": 7,
+        "name": "Maple Syrup",
+        "price": 99.99,
+        "category": "2",
+        "description": "This is product 7!",
+        "quantity": 213,
+        "imageURL": "http://image.com",
+        "color": [
+            "blue",
+            "gray"
+        ],
+        "createdAt": "2022-12-14T10:46:32.471Z",
+        "updatedAt": "2022-12-14T10:46:32.471Z"
+    },
+    {
+        "id": 8,
+        "name": "Mattress",
+        "price": 69.99,
+        "category": "2",
+        "description": "This is product 8!",
+        "quantity": 54,
+        "imageURL": "http://image.com",
+        "color": [
+            "pink",
+            "red"
+        ],
+        "createdAt": "2022-12-14T10:46:32.471Z",
+        "updatedAt": "2022-12-14T10:46:32.471Z"
+    },
+    {
+        "id": 9,
+        "name": "Lounge Chair",
+        "price": 59.99,
+        "category": "2",
+        "description": "This is product 9!",
+        "quantity": 91,
+        "imageURL": "http://image.com",
+        "color": [
+            "green",
+            "orange"
+        ],
+        "createdAt": "2022-12-14T10:46:32.472Z",
+        "updatedAt": "2022-12-14T10:46:32.472Z"
+    },
+    {
+        "id": 10,
+        "name": "Container",
+        "price": 109.99,
+        "category": "2",
+        "description": "This is product 10!",
+        "quantity": 56,
+        "imageURL": "http://image.com",
+        "color": [
+            "black",
+            "white"
+        ],
+        "createdAt": "2022-12-14T10:46:32.472Z",
+        "updatedAt": "2022-12-14T10:46:32.472Z"
+    }
+]

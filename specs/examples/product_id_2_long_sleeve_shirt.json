@@ -1,0 +1,14 @@
+{
+    "id": 2,
+    "name": "Long Sleeve Shirt",
+    "price": 39.99,
+    "category": "1",
+    "description": "This is product 2!",
+    "quantity": 7,
+    "imageURL": "http://image.com",
+    "color": [
+        "blue",
+        "yellow",
+        "red"
+    ]
+}

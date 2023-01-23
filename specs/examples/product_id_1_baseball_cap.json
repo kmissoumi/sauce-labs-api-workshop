@@ -1,0 +1,13 @@
+{
+    "id": 1,
+    "name": "Baseball Cap",
+    "price": 29.99,
+    "category": "1",
+    "description": "This is product 1!",
+    "quantity": 5,
+    "imageURL": "http://image.com",
+    "color": [
+        "blue",
+        "yellow"
+    ]
+}
