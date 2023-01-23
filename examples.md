@@ -76,7 +76,7 @@ Use an OpenAPI spec file to serve static and dynamic responses, while validating
 
 ```sh
 # start the mocking server
-./etc/start-031-piestry-logger
+./etc/start-030-piestry-logger
 
 
 # example 1 / validated request with dynamically generated response
@@ -96,7 +96,6 @@ curl  --user name:password  --header "key: ABC123" --verbose http://localhost:60
 # example 4 / validated request with static response that fails contract
 userId="4"
 curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/user/${userId} |jq
-
 ```
 
 #### E2E Mode

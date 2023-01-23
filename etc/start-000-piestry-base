@@ -5,10 +5,6 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-#scriptPath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-#scriptName=`basename "$0"`
-#scriptPath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-#quickSauceHome=$( echo "${scriptPath%/*}" )
 
 captureDir="specs/data/${buildId}"
 capturePath="${quickSauceHome}/${captureDir}"

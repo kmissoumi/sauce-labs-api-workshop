@@ -14,22 +14,6 @@ quickSauceHome=$( echo "${scriptPath%/*}" )
 source ${scriptPath}/start-000-piestry-base
 
 
-# set default spec file
-#[[ -z ${1} ]] || specFile="${1}"
-#printf 'Using Spec File: %s\n' ${specFile}
-
-
-# set default data centre
-#[[ -z ${SAUCE_DC} ]] && SAUCE_DC="eu-central-1"
-#printf 'Using Sauce data centre: %s\n' ${SAUCE_DC}
-
-
-# set logger url
-#userAuth="${SAUCE_USERNAME}:${SAUCE_ACCESS_KEY}"
-#protoHost="https://${userAuth}@api.${SAUCE_DC}.saucelabs.com"
-#baseURL="${protoHost}/api-testing/rest/v4/${SAUCE_API_PROJECT_HOOK_ID}"
-
-
 # set project url
 projectId=$(curl --location --silent --request GET ${baseURL} | jq --raw-output .id)
 projectURL="https://app.${SAUCE_DC}.saucelabs.com/api-testing/project/${projectId}/logger"
