@@ -11,6 +11,17 @@ capturePath="${quickSauceHome}/${captureDir}"
 
 specFile="demo-api.yaml"
 
+# process captured responses
+function text-to-json {
+    for f in ls ${capturePath}/*.txt
+    do
+        filename=$(basename -- "$f")
+        filename="${filename%.*}"
+        j="${capturePath}/${filename}.json"
+        jq '' ${f} > ${j}
+        [[ ${?} == 0 ]] && rm ${f} || rm ${j}
+    done
+}
 
 # check environment variables
 [[ -z ${SAUCE_USERNAME} ]]  && printf 'Please set environment variable: SAUCE_USERNAME\nexiting...\n' && exit 4 
@@ -31,8 +42,15 @@ printf 'Using Sauce data centre: %s\n' ${SAUCE_DC}
 # set logger url
 userAuth="${SAUCE_USERNAME}:${SAUCE_ACCESS_KEY}"
 protoHost="https://${userAuth}@api.${SAUCE_DC}.saucelabs.com"
-baseURL="${protoHost}/api-testing/rest/v4/${SAUCE_API_PROJECT_HOOK_ID}"
+hookUrl="${protoHost}/api-testing/rest/v4/${SAUCE_API_PROJECT_HOOK_ID}"
 
 
-# set options for m1 compatability
+# set dashboard url
+projectId=$(curl --location --silent --request GET ${hookUrl} | jq --raw-output .id)
+projectUrl="https://app.${SAUCE_DC}.saucelabs.com/api-testing/project/${projectId}"
+buildUrl="${projectUrl}/dashboard/logs?event=false&mode=all&build="${buildId}""
+loggerUrl="${projectUrl}/logger"
+
+
+# set docker options for m1 compatability
 [[ $(uname -m) == "arm64" ]] && options="--platform linux/amd64"

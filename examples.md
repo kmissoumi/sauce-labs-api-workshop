@@ -23,7 +23,7 @@ _Is there a demo API I can use to build and test with?_
 _Do you know if there are any examples I could import?_
 > _Yes!_ 
 > - Open a project > Select _`Create Test`_ > Select _`APIF Test` (Import from an exported API Test)_  
->   - Select the [test-examples.zip][api-example-01] file.
+>   - Select the [test-examples.zip][api-test-example] file.
 
 
 
@@ -49,9 +49,7 @@ _How do I use multiple API calls in a single test?_
 
 ## Deploy API Mocking Server
 
-[api-002]: https://docs.saucelabs.com/api-testing/mocking/
-
-Please supplement the quick start examples provided here by referencing the [source documentation][api-002] which details the benefits, use cases, and provides specific usage.
+Please supplement the quick start examples provided here by referencing the [source documentation][api-docs-mocking] which details the benefits, use cases, and provides specific usage.
 
 
 ### Requirements
@@ -61,7 +59,7 @@ Please supplement the quick start examples provided here by referencing the [sou
 
 ### Set your enviornment variables.
 
-Create a Webhook for the target project. This allows us to log the examples we process.
+[Create a Webhook][api-create-webhook] for the target project. This allows us to log the examples we process.
 
 
 ```
@@ -83,7 +81,7 @@ Use an OpenAPI spec file to serve static and dynamic responses, while validating
 curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/retail/product |jq
 
 
-# example 2 / invalid request / consumer contract violation
+# example 2 / bad request / consumer contract violation
 productId="one"
 curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/retail/product/${productId} |jq
 
@@ -109,10 +107,10 @@ Contract validation against the actual origin! Instead of capturing messages to 
 
 
 # example 1 / request and response both pass validation / response is from the live API
- curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/retail/product |jq
+curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/retail/product |jq
 
 
-# example 2 / invalid request / consumer contract violation
+# example 2 / bad request / consumer contract violation
 productId="one"
 curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/retail/product/${productId} |jq
 
@@ -122,15 +120,17 @@ productId="2"
 curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/retail/product/${productId} |jq
 
 
-# example 4 / validate request and with 404 response from live API / item not found
+# example 4 / valid request and with 404 response from live API / item not found
 productId="200"
 curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/retail/product/${productId}
 
 
-# example 5 / validate request and with 404 response from live API / route not found
+# example 5 / valid request and with 404 response from live API / route not found
 userId="1"
 curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/user/${userId}
 ```
 
 
-[api-example-01]: ./specs/test-examples.zip
+[api-test-example]: ./specs/test-examples.zip
+[api-docs-mocking]: https://docs.saucelabs.com/api-testing/mocking/
+[api-create-webhook]: https://docs.saucelabs.com/api-testing/logger/#running-the-logger

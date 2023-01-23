@@ -46,5 +46,3 @@ Not sure where to start? Take a look at the [Quick Start Examples](./examples.md
 
 [api-methods]: https://docs.saucelabs.com/dev/api/api-testing
 [api-ctl]: https://docs.saucelabs.com/api-testing/integrations/apifctl-cicd-integration/#apifctl-commands
-
-[api-example-01]: ./workshop-examples.zip

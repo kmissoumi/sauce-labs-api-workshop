@@ -11,22 +11,26 @@ scriptName=`basename "$0"`
 scriptPath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 quickSauceHome=$( echo "${scriptPath%/*}" )
 
-source ${scriptPath}/start-000-piestry-base
+source ${scriptPath}/start-000-piestry-base ${1}
 
 
-# set project url
-projectId=$(curl --location --silent --request GET ${baseURL} | jq --raw-output .id)
-projectURL="https://app.${SAUCE_DC}.saucelabs.com/api-testing/project/${projectId}/logger"
-printf "\nTransactions are availbe for review in the project logger.\n"
-printf "URL: %s\n\n" ${projectURL}
+# print project url 
+function cleanup {
+    printf "\n\n"
+    printf "\nReview transactions in the project logger.\n"
+    printf "URL: %s\n\n" ${loggerUrl}
+}
+
+trap cleanup EXIT
 
 
-# set options for m1 compatability
-[[ $(uname -m) == "arm64" ]] && options="--platform linux/amd64"
+# print project logger url
+printf "\nTransactions are available for review in the project logger.\n"
+printf "URL: %s\n\n" ${loggerUrl}
 
 
 # start piestry
-read  -n 1 -p "Press return to start service."
+[[ -z ${SAUCE_DEBUG} ]] && read  -n 1 -p "Press return to start service."
 printf 'Starting piestry in mocking mode with logger...\n'
 docker run --rm --pull always ${options} \
     --volume "${quickSauceHome}/specs:/specs" \
@@ -35,4 +39,4 @@ docker run --rm --pull always ${options} \
     --validate-request \
     --validate-examples \
     -u /specs/${specFile} \
-    --logger "${baseURL}/logger"
+    --logger "${hookUrl}/logger"

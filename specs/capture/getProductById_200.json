@@ -1,0 +1,16 @@
+{
+    "id": 2,
+    "name": "Long Sleeve Shirt",
+    "price": 39.99,
+    "category": "1",
+    "description": "This is product 2!",
+    "quantity": 7,
+    "imageURL": "http://image.com",
+    "color": [
+        "blue",
+        "yellow",
+        "red"
+    ],
+    "createdAt": "2022-12-14T10:46:32.465Z",
+    "updatedAt": "2022-12-14T10:46:32.465Z"
+}

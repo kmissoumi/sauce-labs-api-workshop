@@ -7,33 +7,18 @@
 
 buildId=$(date +"%Y-%m-%d_%H%M%S_%s")
 timeEpoch=$(date +%s)
-scriptPath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 scriptName=`basename "$0"`
+scriptPath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 quickSauceHome=$( echo "${scriptPath%/*}" )
-
-
-
 
 source ${scriptPath}/start-000-piestry-base
 
-# process captured responses
-function text-to-json {
-    for f in ls ${capturePath}/*.txt
-    do
-        filename=$(basename -- "$f")
-        filename="${filename%.*}"
-        j="${capturePath}/${filename}.json"
-        jq '' ${f} > ${j}
-        [[ ${?} == 0 ]] && rm ${f} || rm ${j}
-    done
-}
-
-
+# print project url and capture path
 function cleanup {
     printf "\n\n"
     printf "\nReview transactions at local path and in dashboard.\n"
     printf "path: %s\n\n" ${capturePath}
-    printf "URL: %s\n\n" ${projectDashboardURL}
+    printf "URL: %s\n\n" ${buildUrl}
 }
 
 
@@ -46,18 +31,13 @@ printf "\nTransactions will be captured locally.\n"
 printf "path: %s\n\n" ${capturePath}
 
 
-# set project url
-projectId=$(curl --location --silent --request GET ${baseURL} | jq --raw-output .id)
-projectURL="https://app.${SAUCE_DC}.saucelabs.com/api-testing/project/${projectId}"
-projectLoggerURL="${projectURL}/logger"
-projectDashboardURL="${projectURL}/dashboard/logs?event=false&mode=all&build="${buildId}""
-
+# print project build url
 printf "\nTransactions are availbe for review in the project dashboard and filtered by build.\n"
-printf "URL: %s\n\n" ${projectDashboardURL}
+printf "URL: %s\n\n" ${buildUrl}
 
 
 # start piestry
-read  -n 1 -p "Press return to start service."
+[[ -z ${SAUCE_DEBUG} ]] && read  -n 1 -p "Press return to start service."
 printf "Starting API mocking server in end-to-end mode.\n"
 docker run --rm --pull always ${options} \
     --volume "${quickSauceHome}/specs:/specs" \
@@ -67,4 +47,4 @@ docker run --rm --pull always ${options} \
     --validate-examples \
     -u /specs/demo-api.yaml \
     --e2e --capture /${captureDir} \
-    --logger "${baseURL}/insights/events/_contract?buildId="${buildId}""
+    --logger "${hookUrl}/insights/events/_contract?buildId="${buildId}""
