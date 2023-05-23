@@ -11,7 +11,16 @@ scriptName=`basename "$0"`
 scriptPath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 quickSauceHome=$( echo "${scriptPath%/*}" )
 
-source ${scriptPath}/start-000-piestry-base
+source ${scriptPath}/start-000-sauce-base
+
+captureDir="specs/data/${buildId}"
+capturePath="${quickSauceHome}/${captureDir}"
+
+
+# set default spec file
+specFile="demo-api.yaml"
+printf 'Using Spec File: %s\n' ${specFile}
+
 
 # print project url and capture path
 function cleanup {
@@ -20,7 +29,6 @@ function cleanup {
     printf "path: %s\n\n" ${capturePath}
     printf "URL: %s\n\n" ${buildUrl}
 }
-
 
 trap cleanup EXIT
 
@@ -39,12 +47,12 @@ printf "URL: %s\n\n" ${buildUrl}
 # start piestry
 [[ -z ${SAUCE_DEBUG} ]] && read  -n 1 -p "Press return to start service."
 printf "Starting API mocking server in end-to-end mode.\n"
-docker run --rm --pull always ${options} \
+docker run --rm --pull always ${dockerOptions} \
     --volume "${quickSauceHome}/specs:/specs" \
     --publish 6000:5000 \
     quay.io/saucelabs/piestry \
     --validate-request \
     --validate-examples \
-    -u /specs/demo-api.yaml \
+    -u /specs/${specFile} \
     --e2e --capture /${captureDir} \
     --logger "${hookUrl}/insights/events/_contract?buildId="${buildId}""

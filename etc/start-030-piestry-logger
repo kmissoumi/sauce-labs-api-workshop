@@ -11,7 +11,11 @@ scriptName=`basename "$0"`
 scriptPath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 quickSauceHome=$( echo "${scriptPath%/*}" )
 
-source ${scriptPath}/start-000-piestry-base ${1}
+source ${scriptPath}/start-000-sauce-base
+
+# set default spec file, take 1st argument as spec if provided
+specFile="demo-api.yaml"
+printf 'Using Spec File: %s\n' ${specFile}
 
 
 # print project url 
@@ -32,7 +36,7 @@ printf "URL: %s\n\n" ${loggerUrl}
 # start piestry
 [[ -z ${SAUCE_DEBUG} ]] && read  -n 1 -p "Press return to start service."
 printf 'Starting piestry in mocking mode with logger...\n'
-docker run --rm --pull always ${options} \
+docker run --rm --pull always ${dockerOptions} \
     --volume "${quickSauceHome}/specs:/specs" \
     --publish 6000:5000 \
     quay.io/saucelabs/piestry \

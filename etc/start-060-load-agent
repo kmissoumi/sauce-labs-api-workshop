@@ -1,0 +1,26 @@
+#!/bin/bash -e
+#
+#
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+#
+
+
+timeStamp=$(date +"%Y-%m-%d_%H%M%S_%s")
+timeEpoch=$(date +%s)
+scriptPath="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+quickSauceHome=$( echo "${scriptPath%/*}" )
+
+source ${scriptPath}/start-000-sauce-base
+
+# change the worker id for next instance 
+[[ -z $(pgrep -lf $(basename "$0")) ]] && workerId="bart" || workerId="lisa"
+
+
+docker run --rm --pull always ${dockerOptions} \
+    --env SAUCE_URI=wss://api.${SAUCE_DC}.saucelabs.com/api-testing/ws/v4/loadtesting \
+    --env SAUCE_AUTH=${userAuth} \
+    --env WORKER_ID=${workerId} \
+    --env POOL_ID=theSimpsons \
+    --env MAX_VIRTUAL_USERS=50 \
+    quay.io/saucelabs/loadtestingjs:latest
