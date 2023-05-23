@@ -19,30 +19,30 @@ The API [_Testing Composer_][api-composer] provides an environment to automatica
 - [Logic][api-composer-logic] — Loops, Conditionals
 - [Fn][api-composer-fn] — Flow, Fact, Fake, and more!
 
-<br>
-
-
-Once you've written a few tests, use [_API methods_][api-methods] and the [_apictl_][api-ctl] tool to automate your workflows and integrate them into a pipeline.
-
-
-Not sure where to start? Take a look at the [Quick Start Examples](./examples.md)
-]
 
 <br>
 
+_Not sure where to start?_  
+* Take a look at the _[Quick Start Examples](./examples.md)_ in this repo and walkthrough _[use cases][api-usecases]_ examples.
+
+* Once you've written a few tests, play around with the [_API_][api-methods] and [_saucectl_][api-ctl] tool to automate your workflows and integrate them into a pipeline. 
 
 
 
-[api-composer]: https://docs.saucelabs.com/api-testing/composer
-[api-composer-io]: https://docs.saucelabs.com/api-testing/composer/io-components
-[api-composer-assert]: https://docs.saucelabs.com/api-testing/composer/assertion-components
-[api-composer-logic]: https://docs.saucelabs.com/api-testing/composer/logical-components
-[api-composer-fn]: https://docs.saucelabs.com/api-testing/composer/other-components
+[api-composer]: https://docs.saucelabs.com/api-testing/composer/index.html
+[api-composer-io]: https://docs.saucelabs.com/api-testing/composer/io-components/index.html
+[api-composer-assert]: https://docs.saucelabs.com/api-testing/composer/assertion-components/index.html
+[api-composer-logic]: https://docs.saucelabs.com/api-testing/composer/logical-components/index.html
+[api-composer-fn]: https://docs.saucelabs.com/api-testing/composer/other-components/index.html
 
-[api-mock]: https://docs.saucelabs.com/api-testing/mocking
-[api-load-docs]: https://docs.saucelabs.com/api-testing/load-testing
-[api-load-tutorial]: https://saucelabs.com/blog/api-load-testing-tutorial
-[api-contract]: https://docs.saucelabs.com/api-testing/contract-testing
+[api-mock]: https://docs.saucelabs.com/api-testing/mocking/index.html
+[api-load-docs]: https://docs.saucelabs.com/api-testing/load-testing/index.html
+[api-load-tutorial]: https://saucelabs.com/resources/blog/api-load-testing-tutorial
+[api-contract]: https://docs.saucelabs.com/api-testing/contract-testing/index.html
 
 [api-methods]: https://docs.saucelabs.com/dev/api/api-testing
-[api-ctl]: https://docs.saucelabs.com/api-testing/integrations/apifctl-cicd-integration/#apifctl-commands
+[api-ctl]: https://docs.saucelabs.com/api-testing/integrations/apitesting-saucectl-integration/
+
+[api-docs]: https://docs.saucelabs.com/api-testing/
+[api-usecases]: https://docs.saucelabs.com/api-testing/use-cases/key-value/
+

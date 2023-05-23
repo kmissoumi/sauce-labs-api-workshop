@@ -78,22 +78,22 @@ Use an OpenAPI spec file to serve static and dynamic responses, while validating
 
 
 # example 1 / validated request with dynamically generated response
-curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/retail/product |jq
+curl --config ./etc/curl.conf http://localhost:6000/api/retail/product |jq
 
 
 # example 2 / bad request / consumer contract violation
 productId="one"
-curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/retail/product/${productId} |jq
+curl --config ./etc/curl.conf http://localhost:6000/api/retail/product/${productId} |jq
 
 
-# example 3 / validated request with static response using example that has passed schema validation
+# example 3 / validated request with static response from ./specs/examples/user_id_3.json / response passes schema validation
 userId="3"
-curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/user/${userId} |jq
+curl --config ./etc/curl.conf http://localhost:6000/api/user/${userId} |jq
 
 
-# example 4 / validated request with static response that fails contract
+# example 4 / validated request with static response from ./specs/examples/user_id_4.json / response fails schema validation
 userId="4"
-curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/user/${userId} |jq
+curl --config ./etc/curl.conf http://localhost:6000/api/user/${userId} |jq
 ```
 
 #### E2E Mode
@@ -107,30 +107,36 @@ Contract validation against the actual origin! Instead of capturing messages to 
 
 
 # example 1 / request and response both pass validation / response is from the live API
-curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/retail/product |jq
+curl --config ./etc/curl.conf http://localhost:6000/api/retail/product |jq
 
 
 # example 2 / bad request / consumer contract violation
 productId="one"
-curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/retail/product/${productId} |jq
+curl --config ./etc/curl.conf http://localhost:6000/api/retail/product/${productId} |jq
 
 
 # example 3 / request and response both pass validation / response is from the live API
 productId="2"  
-curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/retail/product/${productId} |jq
+curl --config ./etc/curl.conf http://localhost:6000/api/retail/product/${productId} |jq
 
 
 # example 4 / valid request and with 404 response from live API / item not found
 productId="200"
-curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/retail/product/${productId}
+curl --config ./etc/curl.conf http://localhost:6000/api/retail/product/${productId}
 
 
 # example 5 / valid request and with 404 response from live API / route not found
 userId="1"
-curl  --user name:password  --header "key: ABC123" --verbose http://localhost:6000/api/user/${userId}
+curl --config ./etc/curl.conf http://localhost:6000/api/user/${userId}
 ```
+
+
 
 
 [api-test-example]: ./specs/test-examples.zip
 [api-docs-mocking]: https://docs.saucelabs.com/api-testing/mocking/
 [api-create-webhook]: https://docs.saucelabs.com/api-testing/logger/#running-the-logger
+
+
+
+
