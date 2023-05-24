@@ -17,13 +17,13 @@ The API [_Testing Composer_][api-composer] provides an environment to automatica
 - [I/O][api-composer-io] — GET, POST, PUT, PATCH, DELETE
 - [Assert][api-composer-assert] — Compare, Contains, Exists, Is
 - [Logic][api-composer-logic] — Loops, Conditionals
-- [Fn][api-composer-fn] — Flow, Fact, Fake, and more!
+- [Fn][api-composer-fn] — Flow, Fact, File and more!
 
 
 <br>
 
 _Not sure where to start?_  
-* Take a look at the _[Quick Start Examples](./examples.md)_ in this repo and walkthrough _[use cases][api-usecases]_ examples.
+* Take a look at the _[Quick Start Examples](./examples.md)_ in this repo, read through example _[use cases][api-usecases]_, and explore more examples from the [_saucectl repo_][api-ctl-repo-examples].
 
 * Once you've written a few tests, play around with the [_API_][api-methods] and [_saucectl_][api-ctl] tool to automate your workflows and integrate them into a pipeline. 
 
@@ -40,8 +40,9 @@ _Not sure where to start?_
 [api-load-tutorial]: https://saucelabs.com/resources/blog/api-load-testing-tutorial
 [api-contract]: https://docs.saucelabs.com/api-testing/contract-testing/index.html
 
-[api-methods]: https://docs.saucelabs.com/dev/api/api-testing
+[api-methods]: https://docs.saucelabs.com/dev/api/api-testing/index.html
 [api-ctl]: https://docs.saucelabs.com/api-testing/integrations/apitesting-saucectl-integration/
+[api-ctl-repo-examples]: https://github.com/saucelabs/saucectl-apitest-example/tree/main/examples
 
 [api-docs]: https://docs.saucelabs.com/api-testing/
 [api-usecases]: https://docs.saucelabs.com/api-testing/use-cases/key-value/
